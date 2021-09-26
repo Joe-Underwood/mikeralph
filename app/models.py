@@ -36,3 +36,26 @@ class User(UserMixin, db.Model):
 
     def verify_totp(self, token):
         return pyotp.TOTP(self.otp_secret).verify(token)
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(64), unique=True, nullable=False)
+    priority = db.Column(db.Integer, unique=True)
+    img_filename = db.Column(db.String(64))
+    description = db.Column(db.String(1024))
+    product_subtype_list = db.relationship('Product_Subtype', backref='product', lazy='dynamic')
+    product_images = db.relationship('Product_Image', backref='product', lazy='dynamic')
+
+class Product_Subtype(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    width = db.Column(db.Numeric(10, 2))
+    length = db.Column(db.Numeric(10, 2))
+    height = db.Column(db.Numeric(10, 2))
+    price = db.Column(db.Numeric(10, 2))
+
+class Product_Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img_filename = db.Column(db.String(64))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    priority = db.Column(db.Integer)

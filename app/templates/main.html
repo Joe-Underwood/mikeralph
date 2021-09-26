@@ -10,8 +10,105 @@
     <title>Mike Ralph</title>
     <!--<link rel="stylesheet" href="../static/swiper/swiper-bundle.min.css">-->
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">-->
-    <!--<link rel="stylesheet" href="../static/main.css" />-->
+    <link rel="stylesheet" href="../static/main.css" />
 </head>
 
-<body>mongo jerry</body>
+<body>
+    <div id='root'>
+
+        <nav class="navbar">
+
+            <div class="navbar-inner content-wrapper">
+                <div class="navbar-left">
+                    <div class="hamburger-container" v-on:click="hamburgerAction()">
+                        <div ref="hamburger" class="hamburger">
+                            <span v-for="i in 3"></span>
+                        </div>
+                    </div>
+    
+                    <div class="navbar-logo" v-on:click="scrollToTop()">
+                        <div>MIKE RALPH</div>
+                        <div>CARPENTRY</div>
+                    </div>
+                </div>
+                
+                <div class="navbar-right">
+                    <div class="navbar-links hidden">
+                        <div class="cottage-link" v-on:click="goToCottage($event)">Products <span class="cottage-link-span">&#9662;</span>
+                            <div class="cottage-dropdown">
+                                <ul>
+                                    <li v-for="product in publicProductList"><% product.productName %></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div v-on:click="goToBooking()">About</div>
+                        <div v-on:click="goToContact()">Contact</div>
+                    </div>
+    
+                    <div class="nav-button">
+                        <button type="button" v-on:click="bookCTAPress()">CONTACT</button>
+                    </div>
+                </div>
+            </div>
+            
+        </nav>
+
+        <div ref="sideMenu" class="side-menu hidden" v-on:touchstart="menuTouchstart($event)" v-on:touchmove="menuTouchmove($event)" v-on:touchend="menuTouchend($event)">
+            <div class="nav-links">
+                <div v-on:click="goToCottage()">Products</div>
+                <ul>
+                    <li v-on:click="goToCottageGallery()">Gallery</li>
+                    <li v-on:click="goToCottageOverview()">Overview</li>
+                    <li v-on:click="goToCottageFacilities()">Facilities</li>
+                    <li v-on:click="goToCottageLocation()">Location</li>
+                </ul>
+                <div v-on:click="goToBooking()">About</div>
+                <div v-on:click="goToContact()">Contact Us</div>
+            </div>
+        </div>
+
+
+        <section class="hero"></section>
+
+        <div class="content-wrapper">
+            <section class="products">
+
+                <h1>Products</h1>
+    
+                <div v-for="product in publicProductList">
+                    <div class="product-image">
+                        <div class="product-name"><% product.productName %></div>
+                    </div>
+                    
+                </div>
+                
+            </section>
+    
+            <section class="about">
+    
+                <h1>About</h1>
+    
+            </section>
+        
+            <section class="contact">
+    
+                <h1>Contact</h1>
+    
+            </section>
+        </div>
+
+
+        
+
+    </div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-async-computed"></script>
+
+<script src="../static/main.js"></script>
+
+</html>
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0" />
+    <title>Mike Ralph - Admin</title>
+    <link rel="stylesheet" href="../static/admin.css" />
+</head>
+
+<body>
+    <div class="login-page-container">
+        <div class="login-form-container">
+            <h1>Sign In</h1>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="input-container">
+                    {{ form.username.label }}
+                    {{ form.username(size=32) }}
+                </div>
+                
+                <div class="input-container">
+                    {{ form.password.label }}
+                    {{ form.password(size=32) }}
+                </div>
+
+                <div class="input-container">
+                    {{ form.token.label }}
+                    {{ form.token(size=6) }}
+                </div>
+
+                <div id="login-submit">{{ form.submit() }}</div>
+            </form>
+        </div>
+    </div>
+</body>
